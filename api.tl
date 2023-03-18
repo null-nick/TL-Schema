@@ -609,7 +609,7 @@ keyboardButtonRow#77608b83 buttons:Vector<KeyboardButton> = KeyboardButtonRow;
 
 replyKeyboardHide#a03e5b85 flags:# selective:flags.2?true = ReplyMarkup;
 replyKeyboardForceReply#86b40b08 flags:# single_use:flags.1?true selective:flags.2?true placeholder:flags.3?string = ReplyMarkup;
-replyKeyboardMarkup#85dd99d1 flags:# resize:flags.0?true single_use:flags.1?true selective:flags.2?true persistent:flags.4?true rows:Vector<KeyboardButtonRow> placeholder:flags.3?string = ReplyMarkup;
+replyKeyboardMarkup#85dd99d1 flags:# resize:flags.0?true single_use:flags.1?true selective:flags.2?true is_persistent:flags.4?true rows:Vector<KeyboardButtonRow> placeholder:flags.3?string = ReplyMarkup;
 replyInlineMarkup#48a30254 rows:Vector<KeyboardButtonRow> = ReplyMarkup;
 
 messageEntityUnknown#bb92ba95 offset:int length:int = MessageEntity;
@@ -715,7 +715,7 @@ auth.sentCodeTypeSms#c000bba2 length:int = auth.SentCodeType;
 auth.sentCodeTypeCall#5353e5a7 length:int = auth.SentCodeType;
 auth.sentCodeTypeFlashCall#ab03c6d9 pattern:string = auth.SentCodeType;
 auth.sentCodeTypeMissedCall#82006484 prefix:string length:int = auth.SentCodeType;
-auth.sentCodeTypeEmailCode#5a159841 flags:# apple_signin_allowed:flags.0?true google_signin_allowed:flags.1?true email_pattern:string length:int next_phone_login_date:flags.2?int = auth.SentCodeType;
+auth.sentCodeTypeEmailCode#f450f59b flags:# apple_signin_allowed:flags.0?true google_signin_allowed:flags.1?true email_pattern:string length:int reset_available_period:flags.3?int reset_pending_date:flags.4?int = auth.SentCodeType;
 auth.sentCodeTypeSetUpEmailRequired#a5491dea flags:# apple_signin_allowed:flags.0?true google_signin_allowed:flags.1?true = auth.SentCodeType;
 auth.sentCodeTypeFragmentSms#d9565c39 url:string length:int = auth.SentCodeType;
 auth.sentCodeTypeFirebaseSms#e57b1432 flags:# nonce:flags.0?bytes receipt:flags.1?string push_timeout:flags.1?int length:int = auth.SentCodeType;
@@ -1525,6 +1525,7 @@ auth.checkPassword#d18b4d16 password:InputCheckPasswordSRP = auth.Authorization;
 auth.requestPasswordRecovery#d897bc66 = auth.PasswordRecovery;
 auth.recoverPassword#37096c70 flags:# code:string new_settings:flags.0?account.PasswordInputSettings = auth.Authorization;
 auth.resendCode#3ef1a9bf phone_number:string phone_code_hash:string = auth.SentCode;
+auth.resetLoginEmail#7e960193 phone_number:string phone_code_hash:string = auth.SentCode;
 auth.cancelCode#1f040578 phone_number:string phone_code_hash:string = Bool;
 auth.dropTempAuthKeys#8e48a188 except_auth_keys:Vector<long> = Bool;
 auth.exportLoginToken#b7e085fe api_id:int api_hash:string except_ids:Vector<long> = auth.LoginToken;
