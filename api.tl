@@ -236,9 +236,16 @@ inputReportReasonFake#f5ddd6e7 = ReportReason;
 inputReportReasonIllegalDrugs#a8eb2be = ReportReason;
 inputReportReasonPersonalDetails#9ec7863d = ReportReason;
 
+inputBusinessBotRecipients#d20cac2b = flags:# existing_chats:flags.0?true new_chats:flags.1?true contacts:flags.2?true non_contacts:flags.3?true exclude_selected:flags.5?true users:flags.4?Vector<InputUser> exclude_users:flags.6?Vector<InputUser>;
+inputBusinessChatLink#b54f493f = flags:# message:string entities:flags.0?Vector<MessageEntity> title:flags.1?string;
+inputBusinessIntro#163867085 = flags:# title:string description:string sticker:flags.0?InputDocument;
+inputPrivacyKeyBirthday#698740276 = inputPrivacyKeyBirthday;
+inputPrivacyValueAllowPremium#2009975281 = inputPrivacyValueAllowPremium;
+
 userFull#22ff3e85 flags:# blocked:flags.0?true phone_calls_available:flags.4?true phone_calls_private:flags.5?true can_pin_message:flags.7?true has_scheduled:flags.12?true video_calls_available:flags.13?true voice_messages_forbidden:flags.20?true translations_disabled:flags.23?true stories_pinned_available:flags.26?true blocked_my_stories_from:flags.27?true wallpaper_overridden:flags.28?true contact_require_premium:flags.29?true read_dates_private:flags.30?true flags2:# id:long about:flags.1?string settings:PeerSettings personal_photo:flags.21?Photo profile_photo:flags.2?Photo fallback_photo:flags.22?Photo notify_settings:PeerNotifySettings bot_info:flags.3?BotInfo pinned_msg_id:flags.6?int common_chats_count:int folder_id:flags.11?int ttl_period:flags.14?int theme_emoticon:flags.15?string private_forward_name:flags.16?string bot_group_admin_rights:flags.17?ChatAdminRights bot_broadcast_admin_rights:flags.18?ChatAdminRights premium_gifts:flags.19?Vector<PremiumGiftOption> wallpaper:flags.24?WallPaper stories:flags.25?PeerStories business_work_hours:flags2.0?BusinessWorkHours business_location:flags2.1?BusinessLocation business_greeting_message:flags2.2?BusinessGreetingMessage business_away_message:flags2.3?BusinessAwayMessage = UserFull;
 
 contact#145ade0b user_id:long mutual:Bool = Contact;
+contactBirthday#1b7907ae contact_id:long birthday:Birthday = ContactBirthday;
 
 importedContact#c13e3c50 user_id:long client_id:long = ImportedContact;
 
@@ -251,6 +258,7 @@ contacts.importedContacts#77d01c3b imported:Vector<ImportedContact> popular_invi
 
 contacts.blocked#ade1591 blocked:Vector<PeerBlocked> chats:Vector<Chat> users:Vector<User> = contacts.Blocked;
 contacts.blockedSlice#e1664194 count:int blocked:Vector<PeerBlocked> chats:Vector<Chat> users:Vector<User> = contacts.Blocked;
+contacts.contactBirthdays#116a738b = contacts:Vector<ContactBirthday> users:Vector<User>;
 
 messages.dialogs#15ba6c40 dialogs:Vector<Dialog> messages:Vector<Message> chats:Vector<Chat> users:Vector<User> = messages.Dialogs;
 messages.dialogsSlice#71e094f3 count:int dialogs:Vector<Dialog> messages:Vector<Message> chats:Vector<Chat> users:Vector<User> = messages.Dialogs;
@@ -615,10 +623,12 @@ inputStickerSetEmojiDefaultStatuses#29d0f5ee = InputStickerSet;
 inputStickerSetEmojiDefaultTopicIcons#44c1f8e9 = InputStickerSet;
 inputStickerSetEmojiChannelDefaultStatuses#49748553 = InputStickerSet;
 
-stickerSet#2dd14edc flags:# archived:flags.1?true official:flags.2?true masks:flags.3?true animated:flags.5?true videos:flags.6?true emojis:flags.7?true text_color:flags.9?true channel_emoji_status:flags.10?true installed_date:flags.0?int id:long access_hash:long title:string short_name:string thumbs:flags.4?Vector<PhotoSize> thumb_dc_id:flags.4?int thumb_version:flags.4?int thumb_document_id:flags.8?long count:int hash:int = StickerSet;
+stickerSet#b60a24a6 flags:int id:long access_hash:long title:string short_name:string thumbs:flags.2?Vector<PhotoSize> thumb_dc_id:flags.2?int thumb_version:flags.2?int thumb_document_id:flags.13?long count:int hash:int = StickerSet;
 
 messages.stickerSet#6e153f16 set:StickerSet packs:Vector<StickerPack> keywords:Vector<StickerKeyword> documents:Vector<Document> = messages.StickerSet;
 messages.stickerSetNotModified#d3f924eb = messages.StickerSet;
+myStickers#3e6d83d8 count:int sets:Vector<StickerSetCovered> = MyStickers;
+getMyStickers#3a63d4d4 offset_id:long limit:int = messages.MyStickers;
 
 botCommand#c27ac8c7 command:string description:string = BotCommand;
 
@@ -1164,6 +1174,16 @@ chatAdminRights#5fb224d5 flags:# change_info:flags.0?true post_messages:flags.1?
 
 chatBannedRights#9f120418 flags:# view_messages:flags.0?true send_messages:flags.1?true send_media:flags.2?true send_stickers:flags.3?true send_gifs:flags.4?true send_games:flags.5?true send_inline:flags.6?true embed_links:flags.7?true send_polls:flags.8?true change_info:flags.10?true invite_users:flags.15?true pin_messages:flags.17?true manage_topics:flags.18?true send_photos:flags.19?true send_videos:flags.20?true send_roundvideos:flags.21?true send_audios:flags.22?true send_voices:flags.23?true send_docs:flags.24?true send_plain:flags.25?true until_date:int = ChatBannedRights;
 
+missingInvitee#1653379620 flags:# premium_would_allow_invite:flags.0?true premium_required_for_pm:flags.1?true user_id:long = missingInvitee;
+sponsoredMessageReportOption#1124938064 text:string option:bytes = sponsoredMessageReportOption;
+collectibleInfo#1857945489 purchase_date:int currency:string amount:long crypto_currency:string crypto_amount:long url:string = collectibleInfo;
+getCollectibleInfo#BDAD9D6A collectible:InputCollectible = collectibleInfo;
+inputCollectiblePhone#EA8F2A47 phone:string = InputCollectible;
+inputCollectibleUsername#E9BAA668 username:string = InputCollectible;
+broadcastRevenueTransactionProceeds#5555E1D4 amount:long from_date:int to_date:int = BroadcastRevenueTransaction;
+broadcastRevenueTransactionRefund#426E45A3 amount:long from_date:int provider:string = BroadcastRevenueTransaction;
+broadcastRevenueTransactionWithdrawal#5FA732C8 flags:# pending:flags.0?true failed:flags.2?true amount:long date:int provider:string transaction_date:flags.1?int transaction_url:flags.1?string = BroadcastRevenueTransaction;
+
 inputWallPaper#e630b979 id:long access_hash:long = InputWallPaper;
 inputWallPaperSlug#72091c80 slug:string = InputWallPaper;
 inputWallPaperNoFile#967a462e id:long = InputWallPaper;
@@ -1259,7 +1279,14 @@ statsGraphAsync#4a27eb2d token:string = StatsGraph;
 statsGraphError#bedc9822 error:string = StatsGraph;
 statsGraph#8ea464b6 flags:# json:DataJSON zoom_token:flags.0?string = StatsGraph;
 
-stats.broadcastStats#396ca5fc period:StatsDateRangeDays followers:StatsAbsValueAndPrev views_per_post:StatsAbsValueAndPrev shares_per_post:StatsAbsValueAndPrev reactions_per_post:StatsAbsValueAndPrev views_per_story:StatsAbsValueAndPrev shares_per_story:StatsAbsValueAndPrev reactions_per_story:StatsAbsValueAndPrev enabled_notifications:StatsPercentValue growth_graph:StatsGraph followers_graph:StatsGraph mute_graph:StatsGraph top_hours_graph:StatsGraph interactions_graph:StatsGraph iv_interactions_graph:StatsGraph views_by_source_graph:StatsGraph new_followers_by_source_graph:StatsGraph languages_graph:StatsGraph reactions_by_emotion_graph:StatsGraph story_interactions_graph:StatsGraph story_reactions_by_emotion_graph:StatsGraph recent_posts_interactions:Vector<PostInteractionCounters> = stats.BroadcastStats;
+stats.broadcastStats#3934F3F4 period:stats.StatsDateRangeDays followers:stats.StatsAbsValueAndPrev views_per_post:stats.StatsAbsValueAndPrev shares_per_post:stats.StatsAbsValueAndPrev reactions_per_post:stats.StatsAbsValueAndPrev views_per_story:stats.StatsAbsValueAndPrev shares_per_story:stats.StatsAbsValueAndPrev reactions_per_story:stats.StatsAbsValueAndPrev enabled_notifications:stats.StatsPercentValue growth_graph:StatsGraph followers_graph:StatsGraph mute_graph:StatsGraph top_hours_graph:StatsGraph interactions_graph:StatsGraph iv_interactions_graph:StatsGraph views_by_source_graph:StatsGraph new_followers_by_source_graph:StatsGraph languages_graph:StatsGraph reactions_by_emotion_graph:StatsGraph story_interactions_graph:StatsGraph story_reactions_by_emotion_graph:StatsGraph recent_posts_interactions:Vector<PostInteractionCounters> = stats.BroadcastStats;
+
+stats.broadcastRevenueTransactions#85E42301 count:int transactions:Vector<BroadcastRevenueTransaction> = stats.BroadcastRevenueTransactions;
+stats.broadcastRevenueWithdrawalUrl#CAEDCD46 url:string = stats.BroadcastRevenueWithdrawalUrl;
+stats.getBroadcastRevenueStats#75EBEC8F flags:int dark:flags.0?true channel:InputChannel = stats.BroadcastStats;
+stats.getBroadcastRevenueTransactions#0000688F channel:InputChannel offset:int limit:int = stats.BroadcastRevenueTransactions;
+stats.getBroadcastRevenueWithdrawalUrl#2B5C2F76 channel:InputChannel password:InputCheckPasswordSRP = stats.BroadcastRevenueWithdrawalUrl;
+stats.messageStats#8038A4CB views_graph:StatsGraph reactions_by_emotion_graph:StatsGraph = stats.MessageStats;
 
 help.promoDataEmpty#98f6ac75 expires:int = help.PromoData;
 help.promoData#8c39793f flags:# proxy:flags.0?true expires:int peer:Peer chats:Vector<Chat> users:Vector<User> psa_type:flags.1?string psa_message:flags.2?string = help.PromoData;
@@ -1360,6 +1387,19 @@ botCommandScopePeerUser#a1321f3 peer:InputPeer user_id:InputUser = BotCommandSco
 account.resetPasswordFailedWait#e3779861 retry_date:int = account.ResetPasswordResult;
 account.resetPasswordRequestedWait#e9effc7d until_date:int = account.ResetPasswordResult;
 account.resetPasswordOk#e926d63e = account.ResetPasswordResult;
+
+account.businessChatLinks#ed5c969a links:Vector<businessChatLink> chats:Vector<Chat> users:Vector<User> = account.BusinessChatLinks;
+account.createBusinessChatLink#8f0dfd3a link:InputBusinessChatLink = account.CreateBusinessChatLink;
+account.deleteBusinessChatLink#6080758d slug:string = account.DeleteBusinessChatLink;
+account.disablePeerConnectedBot#5c754d6d peer:InputPeer = account.DisablePeerConnectedBot;
+account.editBusinessChatLink#fc834feb slug:string link:InputBusinessChatLink = account.EditBusinessChatLink;
+account.resolveBusinessChatLink#6a39dca9 slug:string = account.ResolveBusinessChatLink;
+account.resolvedBusinessChatLinks#85af37b8 flags:int peer:Peer message:string entities:flags.0?Vector<MessageEntity> chats:Vector<Chat> users:Vector<User> = account.ResolvedBusinessChatLinks;
+account.toggleConnectedBotPaused#4e678fe9 peer:InputPeer paused:Bool = account.ToggleConnectedBotPaused;
+account.updateBirthday#f891b5a0 flags:int birthday:flags.1?birthday = account.UpdateBirthday;
+account.updateBusinessIntro#f1201aeb flags:int intro:flags.1?InputBusinessIntro = account.UpdateBusinessIntro;
+account.updateConnectedBot#44f9b43 flags:int bot:InputUser recipients:InputBusinessBotRecipients = account.UpdateConnectedBot;
+account.updatePersonalChannel#5fee98ae channel:InputChannel = account.UpdatePersonalChannel;
 
 sponsoredMessage#ed5383f7 flags:# recommended:flags.5?true show_peer_photo:flags.6?true random_id:bytes from_id:flags.3?Peer chat_invite:flags.4?ChatInvite chat_invite_hash:flags.4?string channel_post:flags.2?int start_param:flags.0?string webpage:flags.9?SponsoredWebPage app:flags.10?BotApp message:string entities:flags.1?Vector<MessageEntity> button_text:flags.11?string sponsor_info:flags.7?string additional_info:flags.8?string = SponsoredMessage;
 
@@ -1548,6 +1588,12 @@ readParticipantDate#4a4ff172 user_id:long date:int = ReadParticipantDate;
 
 inputChatlistDialogFilter#f3e0da33 filter_id:int = InputChatlist;
 
+inputBusinessBotRecipients#d20cac2b = flags:# existing_chats:flags.0?true new_chats:flags.1?true contacts:flags.2?true non_contacts:flags.3?true exclude_selected:flags.5?true users:flags.4?Vector<InputUser> exclude_users:flags.6?Vector<InputUser>;
+inputBusinessChatLink#b54f493f = flags:# message:string entities:flags.0?Vector<MessageEntity> title:flags.1?string;
+inputBusinessIntro#163867085 = flags:# title:string description:string sticker:flags.0?InputDocument;
+inputPrivacyKeyBirthday#698740276 = inputPrivacyKeyBirthday;
+inputPrivacyValueAllowPremium#2009975281 = inputPrivacyValueAllowPremium;
+
 exportedChatlistInvite#c5181ac flags:# title:string url:string peers:Vector<Peer> = ExportedChatlistInvite;
 
 chatlists.exportedChatlistInvite#10e6e3a6 filter:DialogFilter invite:ExportedChatlistInvite = chatlists.ExportedChatlistInvite;
@@ -1709,7 +1755,7 @@ inputQuickReplyShortcutId#1190cf1 shortcut_id:int = InputQuickReplyShortcut;
 messages.quickReplies#c68d6695 quick_replies:Vector<QuickReply> messages:Vector<Message> chats:Vector<Chat> users:Vector<User> = messages.QuickReplies;
 messages.quickRepliesNotModified#5f91eb5b = messages.QuickReplies;
 
-connectedBot#e7e999e7 flags:# can_reply:flags.0?true bot_id:long recipients:BusinessRecipients = ConnectedBot;
+connectedBot#ce0d37b0 flags:# can_reply:flags.0?true bot_id:long recipients:BusinessBotRecipients = ConnectedBot;
 
 account.connectedBots#17d7f87b connected_bots:Vector<ConnectedBot> users:Vector<User> = account.ConnectedBots;
 
@@ -2228,16 +2274,17 @@ payments.applyGiftCode#f6e26854 slug:string = Updates;
 payments.getGiveawayInfo#f4239425 peer:InputPeer msg_id:int = payments.GiveawayInfo;
 payments.launchPrepaidGiveaway#5ff58f20 peer:InputPeer giveaway_id:long purpose:InputStorePaymentPurpose = Updates;
 
-stickers.createStickerSet#9021ab67 flags:# masks:flags.0?true animated:flags.1?true videos:flags.4?true emojis:flags.5?true text_color:flags.6?true user_id:InputUser title:string short_name:string thumb:flags.2?InputDocument stickers:Vector<InputStickerSetItem> software:flags.3?string = messages.StickerSet;
+stickers.createStickerSet#9bd86e6a flags:int user_id:InputUser title:string short_name:string thumb:flags.4?InputDocument stickers:Vector<InputStickerSetItem> = StickerSet;
 stickers.removeStickerFromSet#f7760f51 sticker:InputDocument = messages.StickerSet;
-stickers.changeStickerPosition#ffb6d4ca sticker:InputDocument position:int = messages.StickerSet;
-stickers.addStickerToSet#8653febe stickerset:InputStickerSet sticker:InputStickerSetItem = messages.StickerSet;
+stickers.changeStickerPosition#f8b6ad1f sticker:InputDocument position:int = messages.StickerSet;
+stickers.addStickerToSet#e075e46c stickerset:InputStickerSet sticker:InputStickerSetItem = messages.StickerSet;
 stickers.setStickerSetThumb#a76a5392 flags:# stickerset:InputStickerSet thumb:flags.0?InputDocument thumb_document_id:flags.1?long = messages.StickerSet;
 stickers.checkShortName#284b3639 short_name:string = Bool;
 stickers.suggestShortName#4dafc503 title:string = stickers.SuggestedShortName;
 stickers.changeSticker#f5537ebc flags:# sticker:InputDocument emoji:flags.0?string mask_coords:flags.1?MaskCoords keywords:flags.2?string = messages.StickerSet;
-stickers.renameStickerSet#124b1c00 stickerset:InputStickerSet title:string = messages.StickerSet;
-stickers.deleteStickerSet#87704394 stickerset:InputStickerSet = Bool;
+stickers.renameStickerSet#1245e55f stickerset:InputStickerSet title:string = StickerSet;
+stickers.deleteStickerSet#da895b71 stickerset:InputStickerSet = Bool;
+stickers.replaceSticker#7b30c3a0 new_sticker:flags.0?InputStickerSetItem sticker:InputDocument = StickerSet;
 
 phone.getCallConfig#55451fa9 = DataJSON;
 phone.requestCall#42ff96ed flags:# video:flags.0?true user_id:InputUser random_id:int g_a_hash:bytes protocol:PhoneCallProtocol = phone.PhoneCall;
@@ -2338,4 +2385,4 @@ smsjobs.getStatus#10a698e8 = smsjobs.Status;
 smsjobs.getSmsJob#778d902f job_id:string = SmsJob;
 smsjobs.finishJob#4f1ebf24 flags:# job_id:string error:flags.0?string = Bool;
 
-// LAYER 176
+// LAYER 177
