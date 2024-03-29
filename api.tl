@@ -2293,9 +2293,9 @@ stickers.setStickerSetThumb#a76a5392 flags:# stickerset:InputStickerSet thumb:fl
 stickers.checkShortName#284b3639 short_name:string = Bool;
 stickers.suggestShortName#4dafc503 title:string = stickers.SuggestedShortName;
 stickers.changeSticker#f5537ebc flags:# sticker:InputDocument emoji:flags.0?string mask_coords:flags.1?MaskCoords keywords:flags.2?string = messages.StickerSet;
-stickers.renameStickerSet#1245e55f stickerset:InputStickerSet title:string = StickerSet;
+stickers.renameStickerSet#1245e55f stickerset:InputStickerSet title:string = messages.StickerSet;
 stickers.deleteStickerSet#da895b71 stickerset:InputStickerSet = Bool;
-stickers.replaceSticker#7b30c3a0 new_sticker:flags.0?InputStickerSetItem sticker:InputDocument = StickerSet;
+stickers.replaceSticker#7b30c3a0 new_sticker:flags.0?InputStickerSetItem sticker:InputDocument = messages.StickerSet;
 
 phone.getCallConfig#55451fa9 = DataJSON;
 phone.requestCall#42ff96ed flags:# video:flags.0?true user_id:InputUser random_id:int g_a_hash:bytes protocol:PhoneCallProtocol = phone.PhoneCall;
