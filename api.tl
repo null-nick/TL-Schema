@@ -1769,6 +1769,16 @@ account.connectedBots#17d7f87b connected_bots:Vector<ConnectedBot> users:Vector<
 
 messages.dialogFilters#2ad93719 flags:# tags_enabled:flags.0?true filters:Vector<DialogFilter> = messages.DialogFilters;
 
+getFactCheck#b9a14bde peer:InputPeer msg_id:Vector<int> = Vector<FactCheck>;
+factCheck#b8eace94 flags:# need_check:flags.0?true country:flags.1?string text:flags.1?textWithEntities hash:long = FactCheck;
+editFactCheck#058adf75 peer:InputPeer msg_id:int text:textWithEntities = Updates;
+deleteFactCheck#d2085f7c peer:InputPeer msg_id:int = Updates;
+
+messages.availableEffects#bdcc4e2e hash:int effects:Vector<AvailableEffect> documents:Vector<Document> = messages.AvailableEffects;
+payments.getStarsTransactions#6739ac69 flags:# inbound:flags.0?true outbound:flags.1?true peer:InputPeer offset:string = payments.StarsStatus;
+channels.searchPosts#d456924b hashtag:string offset_rate:int offset_peer:InputPeer offset_id:int limit:int = messages.Messages;
+availableEffect#93a86b18 flags:# premium_required:flags.2?true id:long emoticon:string static_icon_id:flags.0?long effect_sticker_id:long effect_animation_id:flags.1?long = availableEffect;
+
 ---functions---
 
 invokeAfterMsg#cb9f372d {X:Type} msg_id:long query:!X = X;
